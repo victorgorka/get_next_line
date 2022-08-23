@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/23 10:55:31 by vde-prad         ###   ########.fr       */
+/*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
+/*   Updated: 2022/08/23 10:55:27 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*buff;
-	
-	
-}
+	char			*res;
+	size_t			size;
+	unsigned int	i;
 
-
-int	main(void)
-{
-	int fd;
-
-//	We open the file and assign the returned file descriptor
-//	to the fd variable in order to use it later:
-	fd = open("", O_READONLY);
-//	Was correctly open?
-	if(fd == -1)
-		return (-1);
-//	Close the file
-	close(fd);
-
-	return (0);
+	if (s1 == 0 || s2 == 0)
+		return (0);
+	i = 0;
+	size = 1;
+	while(*s1)
+		size++;
+	while(*s2)
+		size++;
+	res = malloc(size * sizeof(char));
+	if (res == 0)
+		return (0);
+	while (*s1 != 0)
+		res[i++] = *s1++;
+	while (*s2 != 0)
+		res[i++] = *s2++;
+	res[i] = 0;
+	return (res);
 }
