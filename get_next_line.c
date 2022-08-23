@@ -6,19 +6,23 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/23 20:52:34 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/23 21:27:12 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
 char *get_next_line(int fd)
 {
-	char		*buff;
-	static char	*saved;
+	char		*line;
+	static char	*buff;
 	
-	(!fd || !BUFFER_SIZE) ? return NULL : ;
-	buff = malloc(BUFFER_SIZE*sizeof(char));
-	
+	(fd <= 0 || BUFFER_SIZE <= 0) ? return NULL : ;
+	buff = ft_read_fd(fd, buff);
+	line = ft_get_line(buff);
+	buff = ft_get_leftchars(buff);
+	if (*line == 0 || *line =="")
+		return NULL;
+	return line;
 }
 
 
