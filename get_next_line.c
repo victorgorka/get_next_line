@@ -6,15 +6,18 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/23 10:55:31 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:52:34 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
 char *get_next_line(int fd)
 {
-	char	*buff;
+	char		*buff;
+	static char	*saved;
 	
+	(!fd || !BUFFER_SIZE) ? return NULL : ;
+	buff = malloc(BUFFER_SIZE*sizeof(char));
 	
 }
 
