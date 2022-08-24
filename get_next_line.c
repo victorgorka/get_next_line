@@ -11,7 +11,27 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*ft_read_fd(int fd, char *buff)
+{
+	char	*read;
+	int 	len;
+
+	len = 0;
+	while(!ft_strchr(buff, '\n'))
+	{
+		len = read(fd, read, BUFFER_SIZE);
+		if (len == -1)
+		{
+			free(buff);
+			free(read);
+			return NULL;		
+		}	
+	}
+	ft_strjoin(buff, read);
+	return buff;
+}
+
+char 	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*buff;

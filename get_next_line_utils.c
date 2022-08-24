@@ -11,6 +11,21 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != 0)
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+	}
+	if (c == 0)
+		return ((char *)s);
+	return (0);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*res;
