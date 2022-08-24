@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/24 14:11:44 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:11:23 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -23,21 +23,21 @@ char	*ft_get_line(char *buff)
 
 char	*ft_read_fd(int fd, char *buff)
 {
-	char	*read;
+	char	*got;
 	int 	len;
 
 	len = 0;
 	while (!ft_strchr(buff, '\n'))
 	{
-		len = read(fd, read, BUFFER_SIZE);
+		len = read(fd, got, BUFFER_SIZE);
 		if (len == -1)
 		{
 			free(buff);
-			free(read);
+			free(got);
 			return (NULL);		
 		}	
 	}
-	ft_strjoin(buff, read);
+	ft_strjoin(buff, got);
 	return (buff);
 }
 
