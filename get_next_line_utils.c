@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/24 13:00:22 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:11:42 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -52,13 +52,33 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 char	*ft_strdup(const char *s1)
 {
-	char	*cpy;
-	size_t	size;
+	char			*cpy;
+	size_t			size;
+	unsigned int	i;
 
-	size = ft_strlen(s1) + 1;
+	i = 0;
+	size = 1;
+	while (s1[i++] != '\n' || s1[i])
+		size++;
 	cpy = malloc(size * sizeof(char));
 	if (cpy == 0)
 		return (0);
 	ft_memcpy(cpy, s1, size);
 	return (cpy);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	char		*gooddst;
+	const char	*goodsrc;
+
+	goodsrc = src;
+	gooddst = dst;
+	if (dst == src || !n)
+		return (dst);
+	while (n-- > 0)
+	{
+		*gooddst++ = *goodsrc++;
+	}
+	return (dst);
 }
