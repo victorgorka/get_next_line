@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/24 21:11:23 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:29:15 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -21,11 +21,13 @@ char	*ft_get_line(char *buff)
 	
 }
 
-char	*ft_read_fd(int fd, char *buff)
+char	*ft_read_fd(int fd, char **buff)
 {
-	char	*got;
+	char	got[BUFFER_SIZE];
+	char 	*temp;
 	int 	len;
-
+	
+	*temp = buff;
 	len = 0;
 	while (!ft_strchr(buff, '\n'))
 	{
@@ -34,10 +36,11 @@ char	*ft_read_fd(int fd, char *buff)
 		{
 			free(buff);
 			free(got);
-			return (NULL);		
-		}	
+			break;
+		}
+		*buff = ft_strjoin(buff, got);
+		free(temp);
 	}
-	ft_strjoin(buff, got);
 	return (buff);
 }
 
@@ -45,9 +48,11 @@ char 	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*buff;
-	
-	(fd <= 0 || BUFFER_SIZE <= 0) ? return NULL : ;
-	buff = ft_read_fd(fd, buff);
+
+	*buff = "";
+	if (fd <= 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buff = ft_read_fd(fd, &buff);
 	line = ft_get_line(buff);
 	buff = ft_get_leftchars(buff);
 	if (*line == 0 || *line =="")
