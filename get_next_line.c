@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/25 19:54:20 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/25 23:30:48 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -35,8 +35,7 @@ char	*ft_read_fd(int fd, char **buff)
 		if (len == -1)
 		{
 			free(buff);
-			free(got);
-			break;
+			exit(0);
 		}
 		*buff = ft_strjoin(buff, got);
 		free(temp);
@@ -57,7 +56,7 @@ char 	*get_next_line(int fd)
 	buff = ft_get_leftchars(buff);
 	if (*line == 0 || *line =="")
 		return (NULL);
-	return line;
+	return (line);
 }
 
 
