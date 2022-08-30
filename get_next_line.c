@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/30 16:54:03 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:54:07 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -22,10 +22,11 @@ char	*ft_save_chars(const char *buff)
 	after = 0;
 	i = 0;
 	while (*buff != '\n' && *buff)
-		*buff++;
+		buff++;
 	while (buff[after])
 		after++;
-	saved = malloc(after * sizeof(char));
+	saved = (char *)buff++;
+	return (saved);
 }
 /*
 char	*ft_get_line(char *buff)
@@ -79,9 +80,8 @@ int main()
 {
 	char *line = "Hola\n mundo";
 
-	 line = ft_get_line(line);
+	 line = ft_save_chars(line);
 	 puts(line);
-	 free(line);
 }
 
 /*
