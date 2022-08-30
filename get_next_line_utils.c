@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/25 17:32:56 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:46:34 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -35,7 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1 == 0 || s2 == 0)
 		return (0);
 	i = 0;
-	size = 1;
+	size  = 1;
 	while(*s1)
 		size++;
 	while(*s2)
@@ -52,20 +52,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 char	*ft_strdup(const char *s1)
 {
-	char			*cpy;	
-	unsigned int	i;
+	char	*cpy;
+	size_t	size;
 
-	i = 1;
-	while (s1[i - 1] != '\n' || s1[i - 1])
-		i++;
-	cpy = malloc(i * sizeof(char));
+	size = 0;
+	while (s1[size] && s1[size] != '\n' )
+		size++;
+	cpy = malloc((size) * sizeof(char));
 	if (cpy == 0)
 		return (0);
 	ft_memcpy(cpy, s1, size);
 	return (cpy);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char		*gooddst;
 	const char	*goodsrc;
@@ -75,8 +75,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	if (dst == src || !n)
 		return (dst);
 	while (n-- > 0)
-	{
 		*gooddst++ = *goodsrc++;
-	}
 	return (dst);
 }

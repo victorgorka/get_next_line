@@ -6,22 +6,37 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/08/25 23:30:48 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:54:03 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
+char	*ft_save_chars(const char *buff)
+{
+	unsigned int	before;
+	unsigned int	after;
+	unsigned int	i;
+	char			*saved;
+
+	before = 0;
+	after = 0;
+	i = 0;
+	while (*buff != '\n' && *buff)
+		*buff++;
+	while (buff[after])
+		after++;
+	saved = malloc(after * sizeof(char));
+}
+/*
 char	*ft_get_line(char *buff)
 {
-	unsigned int	i;
+	char	*line;
 
-	i = 0;
-	while (buff[i++] != '\n')
-		(buff[i]) == '\n' ? buff[i] = 0 : ;
-	
+	line = ft_strdup(buff);
+	return (line);
 }
 
-char	*ft_read_fd(int fd, char **buff)
+void	*ft_read_fd(int fd, char **buff)
 {
 	char	got[BUFFER_SIZE];
 	char 	*temp;
@@ -40,7 +55,6 @@ char	*ft_read_fd(int fd, char **buff)
 		*buff = ft_strjoin(buff, got);
 		free(temp);
 	}
-	return (buff);
 }
 
 char 	*get_next_line(int fd)
@@ -51,15 +65,26 @@ char 	*get_next_line(int fd)
 	*buff = "";
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buff = ft_read_fd(fd, &buff);
+	ft_read_fd(fd, &buff);
+	if(!buff)
+		return (NULL);
 	line = ft_get_line(buff);
 	buff = ft_get_leftchars(buff);
 	if (*line == 0 || *line =="")
 		return (NULL);
 	return (line);
 }
+*/
+int main()
+{
+	char *line = "Hola\n mundo";
 
+	 line = ft_get_line(line);
+	 puts(line);
+	 free(line);
+}
 
+/*
 int	main(void)
 {
 	int fd;
@@ -75,3 +100,4 @@ int	main(void)
 
 	return (0);
 }
+*/
