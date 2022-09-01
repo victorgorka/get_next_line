@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/01 18:34:45 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:27:37 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -39,7 +39,7 @@ char	*ft_get_line(char *buff)
 	return (line);
 }
 
-void	*ft_read_fd(int fd, char **buff)
+void	ft_read_fd(int fd, char **buff)
 {
 	char	got[BUFFER_SIZE];
 	char 	*temp;
