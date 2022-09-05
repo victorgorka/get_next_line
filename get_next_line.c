@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/05 17:27:02 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:35:14 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -51,7 +51,7 @@ void	ft_read_fd(int fd, char **buff)
 	temp = *buff;
 	len = 0;
 	puts("read");
-	while (ft_strchr(*buff, '\n') != *buff)
+	while (ft_strchr(*buff, '\n') != *buff && ft_strchr(*buff, '\0'))
 	{
 		puts("read");
 		len = read(fd, got, BUFFER_SIZE);
