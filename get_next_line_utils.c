@@ -6,11 +6,11 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/06 13:17:43 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:32:16 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-
+/*
 int	ft_strchr(const char *s, int c)
 {
 	while (*s != 0)
@@ -23,7 +23,19 @@ int	ft_strchr(const char *s, int c)
 	}
 	return (0);
 }
+*/
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
 
+	len = 0;
+	while (*s != 0)
+	{
+		len++;
+		s++;
+	}
+	return (len);
+}
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*res;
@@ -33,11 +45,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1 == 0 || s2 == 0)
 		return (0);
 	i = 0;
-	size  = 1;
-	while(*s1)
-		size++;
-	while(*s2)
-		size++;
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
 	res = malloc(size * sizeof(char));
 	if (res == 0)
 		return (0);
@@ -76,3 +84,4 @@ char	*ft_memcpy(void *dst, const void *src, size_t n)
 		*gooddst++ = *goodsrc++;
 	return (dst);
 }
+
