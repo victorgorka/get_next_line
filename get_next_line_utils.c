@@ -6,23 +6,21 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/05 17:23:39 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/06 13:17:43 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	while (*s != 0)
 	{
-		if (*s == (unsigned char)c)
-			return ((char *)s);
+		if (*s == (unsigned char)c || *s == 0)
+			return (1);
 		s++;
-		if (*s == (unsigned char)c)
-			return ((char *)s);
+		if (*s == (unsigned char)c || *s == 0)
+			return (1);
 	}
-	if (c == 0)
-		return ((char *)s);
 	return (0);
 }
 
