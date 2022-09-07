@@ -6,24 +6,24 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/07 14:42:21 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:21:57 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 /*
-int	ft_strchr(const char *s, int c)
-{
-	while (*s != 0)
-	{
-		if (*s == (unsigned char)c || *s == 0)
-			return (1);
-		s++;
-		if (*s == (unsigned char)c || *s == 0)
-			return (1);
-	}
-	return (0);
-}
-*/
+   int	ft_strchr(const char *s, int c)
+   {
+   while (*s != 0)
+   {
+   if (*s == (unsigned char)c || *s == 0)
+   return (1);
+   s++;
+   if (*s == (unsigned char)c || *s == 0)
+   return (1);
+   }
+   return (0);
+   }
+   */
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;
@@ -56,7 +56,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res[i] = 0;
 	return (res);
 }
-char	*ft_strdup(const char *s1)
+char	*ft_get_line(const char *s1)
 {
 	char	*cpy;
 	size_t	size;
@@ -64,7 +64,7 @@ char	*ft_strdup(const char *s1)
 	size = 0;
 	while (s1[size] && s1[size] != '\n' )
 		size++;
-	
+
 	cpy = malloc((++size) * sizeof(char));
 	if (cpy == 0)
 		return (0);
@@ -85,4 +85,15 @@ char	*ft_memcpy(void *dst, const void *src, size_t n)
 		*gooddst++ = *goodsrc++;
 	return (dst);
 }
+char	*ft_strdup(const char *s1)
+{
+	char	*cpy;
+	size_t	size;
 
+	size = ft_strlen(s1) + 1;
+	cpy = malloc(size * sizeof(char));
+	if (cpy == 0)
+		return (0);
+	ft_memcpy(cpy, s1, size);
+	return (cpy);
+}

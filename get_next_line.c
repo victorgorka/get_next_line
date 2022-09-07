@@ -6,30 +6,26 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/07 11:52:30 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:34:38 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 //Recibe el buffer y copia todos los caracteres despues del primer salto de
 //linea y lo devuelve con reserva de memoria
-char	*ft_save_chars(const char *buff)
+void	ft_save_chars(char *buff)
 {
-	unsigned int	before;
-	unsigned int	after;
+	char			*temp;
 	unsigned int	i;
-	char			*saved;
 
-	before = 0;
-	after = 0;
 	i = 0;
-	while (*buff != '\n' && *buff)
-		buff++;
-	if (*buff == '\n')
-		buff++;
-	while (buff[after])
-		after++;
-	saved = ft_strdup(buff);//TODO leak de memoria, arreglar(usar memcpy?)
-	return (saved);
+	temp = buff;
+	while (buff[i] != '\n' && buff[i])
+		i++;
+	if (buff[i] == '\n')
+		i++;
+	printf("%s\n", &buff[i]);
+	buff = ft_strdup(&buff[i]);
+	free(temp);
 }
 /*
    char	*ft_get_line(char *buff)
@@ -75,8 +71,8 @@ char 	*get_next_line(int fd)
 	ft_read_fd(fd, &buff);
 	if(!buff)
 		return (NULL);
-	line = ft_strdup(buff);
-	buff = ft_save_chars(buff);
+	line = ft_get_line(buff);
+	ft_save_chars(buff);
 	if (*line == 0)
 		return (NULL);
 	return (line);
@@ -84,16 +80,18 @@ char 	*get_next_line(int fd)
 /*
    int main()
    {
-   char *line = "Hola\n mundo";
+   char *line;;
 
-   line = ft_save_chars(line);
+   line = malloc(50);
+   line = "Hola\n mundo\ngueeeleee";
+
+   ft_save_chars(line);
    puts(line);
-   free(line);
    return (0);
    }
    */
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	int 	fd;
 	char	*line;
@@ -118,4 +116,8 @@ int	main(void)
 	close(fd);
 
 	return (0);
+}
+int main(int argc, char *argv[])
+{
+		
 }
