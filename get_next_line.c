@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/06 19:31:09 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:52:30 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -28,7 +28,7 @@ char	*ft_save_chars(const char *buff)
 		buff++;
 	while (buff[after])
 		after++;
-	saved = ft_strdup(buff);//TODO leak de memoria, arreglar
+	saved = ft_strdup(buff);//TODO leak de memoria, arreglar(usar memcpy?)
 	return (saved);
 }
 /*
@@ -65,8 +65,11 @@ char 	*get_next_line(int fd)
 	char		*line;
 	static char	*buff;
 
-	buff = malloc(sizeof(char));
-	buff[0] = '\0';
+	if (buff == 0)
+	{
+		buff = malloc(sizeof(char));
+		buff[0] = '\0';
+	}
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ft_read_fd(fd, &buff);
@@ -79,16 +82,16 @@ char 	*get_next_line(int fd)
 	return (line);
 }
 /*
-int main()
-{
-char *line = "Hola\n mundo";
+   int main()
+   {
+   char *line = "Hola\n mundo";
 
-line = ft_save_chars(line);
-puts(line);
-free(line);
-return (0);
-}
-*/
+   line = ft_save_chars(line);
+   puts(line);
+   free(line);
+   return (0);
+   }
+   */
 
 int	main(void)
 {
