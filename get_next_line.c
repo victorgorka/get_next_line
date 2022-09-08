@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/08 17:32:59 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:45:03 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -68,11 +68,10 @@ char 	*get_next_line(int fd)
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ft_read_fd(fd, &buff);
+	printf("%s\n////////////////////////\n", buff);
 	if(!buff)
 		return (NULL);
 	line = ft_get_line(buff);
-	//printf("%s", line);
-	printf("%s\n/////////\n", buff);
 	ft_save_chars(&buff);
 	if (*line == 0)
 		return (NULL);
@@ -81,15 +80,13 @@ char 	*get_next_line(int fd)
 // int main()
 // {
 //     char	*line;
-//     // char	*dup;
 // 
-//     // dup = malloc(50);
 //     line = malloc(50);
 //     ft_memcpy(line, "Hola\nmundo\nardiente", 20);
 // 
-//     // dup = ft_strdup(line);
 //     ft_save_chars(&line);
-//      puts(line);
+//     puts(line);
+//     free(line);
 //     return (0);
 // }
 
@@ -97,23 +94,28 @@ int	main()
 {
 	int 	fd;
 	char	*line;
-	int		i;
-
-	i = 0;
+	// int		i;
+	
+	line = malloc(1);
+	line[0] = 0;
+	// i = 0;
 	//	We open the file and assign the returned file descriptor
 	//	to the fd variable in order to use it later:
 	fd = open("text.txt", O_RDONLY);
 	//	Was correctly open?
-	if(fd == -1)
-		return (-1);
-	while (i < 10)
-	{
-		i++;
-		line = get_next_line(fd);
-		// printf("%s", line);
-		free(line);
-	}
+	// if(fd == -1)
+	//     return (-1);
+	// while (i < 10)
+	// {
+	//     i++;
+	//     line = get_next_line(fd);
+	//     // printf("%s", line);
+	//     free(line);
+	// }
 	//	Close the file
+
+	ft_read_fd(fd, &line); 
+	puts(line);
 	close(fd);
 
 	return (0);
