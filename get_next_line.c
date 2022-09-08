@@ -6,25 +6,24 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/07 17:34:38 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:32:59 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 //Recibe el buffer y copia todos los caracteres despues del primer salto de
 //linea y lo devuelve con reserva de memoria
-void	ft_save_chars(char *buff)
+void	ft_save_chars(char **buff)
 {
 	char			*temp;
 	unsigned int	i;
 
+	temp = *buff;
 	i = 0;
-	temp = buff;
-	while (buff[i] != '\n' && buff[i])
+	while ((*buff)[i] != '\n' && (*buff)[i])
 		i++;
-	if (buff[i] == '\n')
+	if ((*buff)[i] == '\n')
 		i++;
-	printf("%s\n", &buff[i]);
-	buff = ft_strdup(&buff[i]);
+	*buff = ft_strdup((*buff) + i);
 	free(temp);
 }
 /*
@@ -72,26 +71,29 @@ char 	*get_next_line(int fd)
 	if(!buff)
 		return (NULL);
 	line = ft_get_line(buff);
-	ft_save_chars(buff);
+	//printf("%s", line);
+	printf("%s\n/////////\n", buff);
+	ft_save_chars(&buff);
 	if (*line == 0)
 		return (NULL);
 	return (line);
 }
-/*
-   int main()
-   {
-   char *line;;
+// int main()
+// {
+//     char	*line;
+//     // char	*dup;
+// 
+//     // dup = malloc(50);
+//     line = malloc(50);
+//     ft_memcpy(line, "Hola\nmundo\nardiente", 20);
+// 
+//     // dup = ft_strdup(line);
+//     ft_save_chars(&line);
+//      puts(line);
+//     return (0);
+// }
 
-   line = malloc(50);
-   line = "Hola\n mundo\ngueeeleee";
-
-   ft_save_chars(line);
-   puts(line);
-   return (0);
-   }
-   */
-
-int	main(int argc, char *argv[])
+int	main()
 {
 	int 	fd;
 	char	*line;
@@ -104,20 +106,15 @@ int	main(int argc, char *argv[])
 	//	Was correctly open?
 	if(fd == -1)
 		return (-1);
-	while (i != 2)
+	while (i < 10)
 	{
 		i++;
 		line = get_next_line(fd);
-		//puts(line);
-		printf("%s", line);
+		// printf("%s", line);
 		free(line);
 	}
 	//	Close the file
 	close(fd);
 
 	return (0);
-}
-int main(int argc, char *argv[])
-{
-		
 }
