@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:21:09 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/08 16:56:00 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:57:17 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 //************************** FUNCTIONS ****************************************
-char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
-//int		ft_strchr(const char *s, int c);
-char	*ft_get_line(const char *s1);
-char	*ft_memcpy(void *dst, const void *src, size_t n);
-size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
+char	*ft_memcpy(void *dst, const void *src, size_t n);
+int		ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
 #endif
