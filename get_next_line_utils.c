@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/08 17:59:33 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:23:39 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -96,3 +96,10 @@ char	*ft_strdup(const char *s1)
 	ft_memcpy(cpy, s1, size);
 	return (cpy);
 }
+// int main()
+// {
+//     char	s1[50] = "Hola Mundo";
+//     char	*s2 = ", arde un poco porfa";
+// 
+//     puts(ft_strjoin(s1, s2));
+// }

@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/08 18:45:03 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:30:15 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -42,8 +42,10 @@ void	ft_read_fd(int fd, char **buff)
 	char	got[BUFFER_SIZE];
 	char 	*temp;
 	int 	len;
+	int		i;
 
 	len = 1;
+	i = 0;
 	while (len != 0)
 	{
 		temp = *buff;
@@ -51,6 +53,11 @@ void	ft_read_fd(int fd, char **buff)
 		if (len == -1 || len == 0)
 			return ;
 		*buff = ft_strjoin(*buff, got);
+		while (i < BUFFER_SIZE)
+		{
+			got[i] = 0;
+			i++;
+		}
 		free(temp);
 	}
 }
@@ -68,7 +75,7 @@ char 	*get_next_line(int fd)
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ft_read_fd(fd, &buff);
-	printf("%s\n////////////////////////\n", buff);
+	// printf("%s\n////////////////////////\n", buff);
 	if(!buff)
 		return (NULL);
 	line = ft_get_line(buff);
