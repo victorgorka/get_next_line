@@ -103,33 +103,33 @@ char 	*get_next_line(int fd)
 //     return (0);
 // }
 
-int	main()
-{
-	int 	fd;
-	char	*line;
-	int		i;
-	
-	line = malloc(1);
-	line[0] = 0;
-	i = 0;
-	//	We open the file and assign the returned file descriptor
-	//	to the fd variable in order to use it later:
-	fd = open("text.txt", O_RDONLY);
-	//	Was correctly open?
-	if(fd == -1)
-		return (-1);
-	while (i < 15)
-	{
-		i++;
-		line = get_next_line(fd);
-		printf("%s", line);
-		free(line);
-	}
-	//	Close the file
-
-	ft_read_fd(fd, &line); 
-	// printf("%s",line);
-	close(fd);
-
-	return (0);
-}
+// int	main()
+// {
+//     int 	fd;
+//     char	*line;
+//     int		i;
+//     
+//     line = malloc(1);
+//     line[0] = 0;
+//     i = 0;
+//     //	We open the file and assign the returned file descriptor
+//     //	to the fd variable in order to use it later:
+//     fd = open("text.txt", O_RDONLY);
+//     //	Was correctly open?
+//     if(fd == -1)
+//         return (-1);
+//     while (i < 15)
+//     {
+//         i++;
+//         line = get_next_line(fd);
+//         printf("%s", line);
+//         free(line);
+//     }
+//     //	Close the file
+// 
+//     ft_read_fd(fd, &line); 
+//     // printf("%s",line);
+//     close(fd);
+// 
+//     return (0);
+// }
