@@ -54,7 +54,7 @@ void	ft_read_fd(int fd, char **buff)
 
 	len = 1;
 	i = 0;
-	while (len != 0)
+	while (len != 0 && !ft_strchr(*buff, '\n'))
 	{
 		temp = *buff;
 		len = read(fd, got, BUFFER_SIZE);
@@ -81,7 +81,8 @@ char	*get_next_line(int fd)
 	}
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	ft_read_fd(fd, &buff);
+	if (!ft_strchr(buff, '\n'))
+		ft_read_fd(fd, &buff);
 	if (!buff)
 		return (NULL);
 	line = ft_get_line(buff);
@@ -103,33 +104,33 @@ char	*get_next_line(int fd)
 //     return (0);
 // }
 
-// int	main()
-// {
-//     int 	fd;
-//     char	*line;
-//     int		i;
-//     
-//     line = malloc(1);
-//     line[0] = 0;
-//     i = 0;
-//     //	We open the file and assign the returned file descriptor
-//     //	to the fd variable in order to use it later:
-//     fd = open("text.txt", O_RDONLY);
-//     //	Was correctly open?
-//     if(fd == -1)
-//         return (-1);
-//     while (i < 15)
-//     {
-//         i++;
-//         line = get_next_line(fd);
-//         printf("%s", line);
-//         free(line);
-//     }
-//     //	Close the file
-// 
-//     ft_read_fd(fd, &line); 
-//     // printf("%s",line);
-//     close(fd);
-// 
-//     return (0);
-// }
+//int main()
+//{
+	//int 	fd;
+	//char	*line;
+	//int		i;
+
+	//line = malloc(1);
+	//line[0] = 0;
+	//i = 0;
+	////	We open the file and assign the returned file descriptor
+	////	to the fd variable in order to use it later:
+	//fd = open("text.txt", O_RDONLY);
+	////	Was correctly open?
+	//if(fd == -1)
+		//return (-1);
+	//while (i < 16)
+	//{
+		//i++;
+		//line = get_next_line(fd);
+		//printf("%s", line);
+		//free(line);
+	//}
+	////	Close the file
+
+	//ft_read_fd(fd, &line); 
+	//// printf("%s",line);
+	//close(fd);
+
+	//return (0);
+//}
