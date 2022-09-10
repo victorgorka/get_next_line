@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
+
 int	ft_strchr(const char *s, int c)
 {
 	while (*s != 0)
@@ -22,6 +23,7 @@ int	ft_strchr(const char *s, int c)
 	}
 	return (0);
 }
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;
@@ -34,6 +36,7 @@ size_t	ft_strlen(const char *s)
 	}
 	return (len);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*res;
@@ -54,6 +57,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res[i] = 0;
 	return (res);
 }
+
 char	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char		*gooddst;
@@ -67,6 +71,7 @@ char	*ft_memcpy(void *dst, const void *src, size_t n)
 		*gooddst++ = *goodsrc++;
 	return (dst);
 }
+
 char	*ft_strdup(const char *s1)
 {
 	char	*cpy;

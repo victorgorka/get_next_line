@@ -5,7 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             *//*   Updated: 2022/09/09 19:00:50 by vde-prad         ###   ########.fr       */
+/*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
+/*   Updated: 2022/09/09 19:00:50 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -25,6 +26,7 @@ void	ft_save_chars(char **buff)
 	*buff = ft_strdup((*buff) + i);
 	free(temp);
 }
+
 char	*ft_get_line(const char *s1)
 {
 	char	*cpy;
@@ -37,16 +39,17 @@ char	*ft_get_line(const char *s1)
 	if (cpy == 0)
 		return (0);
 	ft_memcpy(cpy, s1, ++size);
-	cpy[size] = '\0'; 
+	cpy[size] = '\0';
 	return (cpy);
 }
 //Funcion que lee el fichero tantas veces que sea necesario hasta encontrar un
 //salto de linea con reserva de memoria
+
 void	ft_read_fd(int fd, char **buff)
 {
 	char	got[BUFFER_SIZE + 1];
-	char 	*temp;
-	int 	len;
+	char	*temp;
+	int		len;
 	int		i;
 
 	len = 1;
@@ -59,7 +62,6 @@ void	ft_read_fd(int fd, char **buff)
 		if (len == -1 || len == 0)
 			return ;
 		*buff = ft_strjoin(*buff, got);
-		// printf("%s//////////////", *buff);
 		while (i < BUFFER_SIZE)
 			got[i++] = 0;
 		i = 0;
@@ -67,7 +69,7 @@ void	ft_read_fd(int fd, char **buff)
 	}
 }
 
-char 	*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*buff;
@@ -80,16 +82,14 @@ char 	*get_next_line(int fd)
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ft_read_fd(fd, &buff);
-	if(!buff)
+	if (!buff)
 		return (NULL);
 	line = ft_get_line(buff);
 	ft_save_chars(&buff);
-	// printf("%s", line);
 	if (*line == 0)
 		return (NULL);
 	return (line);
 }
-
 // int main()
 // {
 //     char	*line;
