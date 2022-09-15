@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/09 19:00:50 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:12:27 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -42,8 +42,8 @@ char	*ft_get_line(const char *s1)
 	cpy[size] = '\0';
 	return (cpy);
 }
-//Funcion que lee el fichero tantas veces que sea necesario hasta encontrar un
-//salto de linea con reserva de memoria
+//Funcion que lee el fichero hasta que encuentre un salto de linea, modifica
+//buff con las nuevas lecturas
 
 void	ft_read_fd(int fd, char **buff)
 {
@@ -54,7 +54,7 @@ void	ft_read_fd(int fd, char **buff)
 
 	len = 1;
 	i = 0;
-	while (len != 0 && !ft_strchr(*buff, '\n'))
+	while (len > 0 && !ft_strchr(*buff, '\n'))
 	{
 		temp = *buff;
 		len = read(fd, got, BUFFER_SIZE);
@@ -87,6 +87,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(buff);
 	ft_save_chars(&buff);
+	if(!ft_strchr(buff, '\n'))
+			free(buff);
 	if (*line == 0)
 		return (NULL);
 	return (line);
