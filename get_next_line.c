@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/15 18:12:27 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:23:38 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -45,7 +45,7 @@ char	*ft_get_line(const char *s1)
 //Funcion que lee el fichero hasta que encuentre un salto de linea, modifica
 //buff con las nuevas lecturas
 
-void	ft_read_fd(int fd, char **buff)
+int	ft_read_fd(int fd, char **buff)
 {
 	char	got[BUFFER_SIZE + 1];
 	char	*temp;
@@ -60,17 +60,19 @@ void	ft_read_fd(int fd, char **buff)
 		len = read(fd, got, BUFFER_SIZE);
 		got[BUFFER_SIZE] = '\0';
 		if (len == -1 || len == 0)
-			return ;
+			return (0);
 		*buff = ft_strjoin(*buff, got);
 		while (i < BUFFER_SIZE)
 			got[i++] = 0;
 		i = 0;
 		free(temp);
 	}
+	return(len);
 }
 
 char	*get_next_line(int fd)
 {
+	int			len;
 	char		*line;
 	static char	*buff;
 
@@ -82,12 +84,12 @@ char	*get_next_line(int fd)
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!ft_strchr(buff, '\n'))
-		ft_read_fd(fd, &buff);
+		len = ft_read_fd(fd, &buff);
 	if (!buff)
 		return (NULL);
 	line = ft_get_line(buff);
 	ft_save_chars(&buff);
-	if(!ft_strchr(buff, '\n'))
+	if(!ft_strchr(buff, '\n') && len == 0)
 			free(buff);
 	if (*line == 0)
 		return (NULL);
