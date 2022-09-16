@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/15 20:23:38 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:53:27 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 		buff = malloc(sizeof(char));
 		buff[0] = '\0';
 	}
-	if (fd <= 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!ft_strchr(buff, '\n'))
 		len = ft_read_fd(fd, &buff);
@@ -89,8 +89,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(buff);
 	ft_save_chars(&buff);
-	if(!ft_strchr(buff, '\n') && len == 0)
-			free(buff);
+	// if(!ft_strchr(buff, '\n') && len == 0)
+			// free(buff);
 	if (*line == 0)
 		return (NULL);
 	return (line);
