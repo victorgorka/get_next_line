@@ -6,13 +6,15 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/09 18:58:51 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:39:14 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
 int	ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (0);
 	while (*s != 0)
 	{
 		if (*s == (unsigned char)c)
