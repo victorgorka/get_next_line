@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/16 21:26:48 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:38:59 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -47,7 +47,11 @@ char	*ft_get_line(const char *s1)
 		return (0);
 	ft_memcpy(cpy, s1, size);
 	cpy[size] = '\0';
-	// printf("cpy: %s\nsize: %zu\n", cpy, size);
+	if (*cpy == 0)
+	{
+		free(cpy);
+		return (NULL);
+	}
 	return (cpy);
 }
 //Funcion que lee el fichero hasta que encuentre un salto de linea, modifica
@@ -110,11 +114,11 @@ char	*get_next_line(int fd)
 		free(buff);
 		buff = NULL;
 	}
-	if (*line == 0)
-	{
-		free(line);
-		return (NULL);
-	}
+	// if (*line == 0)
+	// {
+		// free(line);
+		// return (NULL);
+	// }
 	return (line);
 }
 // int main()
