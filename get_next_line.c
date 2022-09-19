@@ -6,30 +6,30 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/19 12:38:59 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:03:14 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 //Recibe el buffer y copia todos los caracteres despues del primer salto de
 //linea y lo devuelve con reserva de memoria
-void	ft_save_chars(char **buff)
+void	ft_save_chars(char **buff, int len)
 {
 	char			*temp;
 	unsigned int	i;
 
 	temp = *buff;
 	i = 0;
-	// if (!*buff[i])
-	// {
-		// free(*buff);
-		// return ;
-	// }
 	while ((*buff)[i] != '\n' && (*buff)[i])
 		i++;
 	if ((*buff)[i] == '\n')
 		i++;
 	*buff = ft_strdup((*buff) + i);
 	free(temp);
+	if(!ft_strchr(*buff, '\n') && len == 0)
+	{
+		free(*buff);
+		*buff = NULL;
+	}
 }
 
 char	*ft_get_line(const char *s1)
@@ -93,32 +93,22 @@ char	*get_next_line(int fd)
 		buff = malloc(sizeof(char));
 		buff[0] = '\0';
 	}
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		free(buff);
-		buff = NULL;
-		return (NULL);
-	}
+	// if (fd < 0 || BUFFER_SIZE <= 0)
+	// {
+	//     free(buff);
+	//     buff = NULL;
+	//     return (NULL);
+	// }
 	if (!ft_strchr(buff, '\n'))
 		len = ft_read_fd(fd, &buff);
-	if (!buff || len == -1)
+	if (!buff || len == -1 || fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(buff);
 		buff = NULL;
 		return (NULL);
 	}
 	line = ft_get_line(buff);
-	ft_save_chars(&buff);
-	if(!ft_strchr(buff, '\n') && len == 0)
-	{
-		free(buff);
-		buff = NULL;
-	}
-	// if (*line == 0)
-	// {
-		// free(line);
-		// return (NULL);
-	// }
+	ft_save_chars(&buff, len);
 	return (line);
 }
 // int main()
