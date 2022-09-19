@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/19 13:03:14 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:16:32 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -25,7 +25,7 @@ void	ft_save_chars(char **buff, int len)
 		i++;
 	*buff = ft_strdup((*buff) + i);
 	free(temp);
-	if(!ft_strchr(*buff, '\n') && len == 0)
+	if (!ft_strchr(*buff, '\n') && len == 0)
 	{
 		free(*buff);
 		*buff = NULL;
@@ -79,7 +79,7 @@ int	ft_read_fd(int fd, char **buff)
 		i = 0;
 		free(temp);
 	}
-	return(len);
+	return (len);
 }
 
 char	*get_next_line(int fd)
@@ -93,12 +93,6 @@ char	*get_next_line(int fd)
 		buff = malloc(sizeof(char));
 		buff[0] = '\0';
 	}
-	// if (fd < 0 || BUFFER_SIZE <= 0)
-	// {
-	//     free(buff);
-	//     buff = NULL;
-	//     return (NULL);
-	// }
 	if (!ft_strchr(buff, '\n'))
 		len = ft_read_fd(fd, &buff);
 	if (!buff || len == -1 || fd < 0 || BUFFER_SIZE <= 0)
