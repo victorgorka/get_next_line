@@ -6,10 +6,10 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/19 14:16:14 by vde-prad         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:37:31 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 //Recibe el buffer y copia todos los caracteres despues del primer salto de
 //linea y lo devuelve con reserva de memoria
 void	ft_save_chars(char **buff, int len)
