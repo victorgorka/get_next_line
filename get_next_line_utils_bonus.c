@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: vde-prad <vde-prad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:44:19 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/16 20:39:14 by vde-prad         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:45:25 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 int	ft_strchr(const char *s, int c)
 {
