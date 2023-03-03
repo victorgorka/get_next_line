@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:01:33 by vde-prad          #+#    #+#             */
-/*   Updated: 2022/09/19 13:16:32 by vde-prad         ###   ########.fr       */
+/*   Updated: 2023/03/03 14:53:31 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -117,13 +117,16 @@ char	*get_next_line(int fd)
 //     free(line);
 //     return (0);
 // }
-
+// void	leaks(void)
+// {
+//     system("leaks a.out");
+// }
 // int main()
 // {
 //     int 	fd;
 //     char	*line;
 //     int		i;
-// // 
+// 
 //     i = 0;
 //     //	We open the file and assign the returned file descriptor
 //     //	to the fd variable in order to use it later:
@@ -137,10 +140,7 @@ char	*get_next_line(int fd)
 //         free(line);
 //     }
 //     //	Close the file
-// // 
-//     // ft_read_fd(fd, &line); 
-//     // printf("%s",line);
 //     close(fd);
-// // 
+//     atexit(leaks);
 //     return (0);
 // }
