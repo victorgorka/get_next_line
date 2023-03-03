@@ -6,7 +6,7 @@
 /*   By: vde-prad <vde-prad@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:56:03 by vde-prad          #+#    #+#             */
-/*   Updated: 2023/02/23 20:07:49 by vde-prad         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:17:00 by vde-prad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 //**************************** MACROS *****************************************
-# define BUFFER_SIZE 42
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 //************************** FUNCTIONS ****************************************
 
 char	*ft_strjoin(char const *s1, char const *s2);
